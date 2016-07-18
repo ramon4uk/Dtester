@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+</head>
+
+<body ng-app="app.admin" ng-controller="AdminEditController as admins">
+    <h1>Edit Admin</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="admin in admins.array" >
+                <td>{{admin.id}}</td>
+                <td>{{admin.username}}</td>
+                <td>{{admin.email}}</td>
+                <td>
+                    <button ng-click = "admins.edit(admin.id)">Редагувати</button>
+                </td>
+                <td>
+                    <button ng-click = "admins.remove(admin.id)">Видалити</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form ng-if = "admins.show">
+        <button ng-click = "admins.hideForm()">x</button>
+        <span>Редагувати адміна з id = {{admins.currentId}}</span>
+        <br>
+        <span>Name:</span>
+        <br>
+        <input type="text"  name="name" ng-model="admins.name">
+        <button ng-click = "admins.update('name')">Надіслати</button>
+        <br>
+        <span>Password:</span>
+        <br>
+        <input type="password" name="password" ng-model="admins.password">
+        <button ng-click = "admins.update('password')">Надіслати</button><br>
+        <span>Email:</span>
+        <br>
+        <input type="text" name="email" ng-model="admins.email">
+        <button ng-click = "admins.update('email')">Надіслати</button>
+        <br>
+
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="app.admin.js"></script>
+    <script src="app.admin.controller.js"></script>
+    <script src="app.admin.service.js"></script>
+</body>
+</html>
