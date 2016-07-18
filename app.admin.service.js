@@ -11,9 +11,17 @@
             return{
                 getAdmins:getAdmins,
                 deleteAdmin:deleteAdmin,
-                editAdmin:editAdmin
+                editAdmin:editAdmin,
+                login:login
             };
 
+            function login() {
+                var url = "http://dtapi.local//login/index";
+                var adminLog = {"username":"admin","password":"1qaz2wsx"};
+                return $http.post(url, adminLog)
+                    .then(complete)
+                    .catch(failed);
+            };
 
             function getAdmins() {
                 var url = "http://dtapi.local/AdminUser/getRecords";
@@ -30,6 +38,10 @@
             };
 
             function deleteAdmin(id) {
+                if (id == 1){
+                    alert("Цього адміна не дозволено видаляти");
+                    return;
+                }
                 var url = "/AdminUser/del/" + id;
                 return $http.post(url)
                     .then(complete)

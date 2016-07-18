@@ -23,7 +23,7 @@
         activate();
 
         function activate() {
-     //       adminService.login();
+            adminService.login();
             return adminService.getAdmins().then(function (data) {
                 vm.array = data;
                 return vm.array;
