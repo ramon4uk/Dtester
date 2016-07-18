@@ -17,7 +17,7 @@
 
             function login() {
                 var url = "http://dtapi.local//login/index";
-                var adminLog = {"username":"admin","password":"1qaz2wsx"};
+                var adminLog = {"username":"admin","password":""};
                 return $http.post(url, adminLog)
                     .then(complete)
                     .catch(failed);
