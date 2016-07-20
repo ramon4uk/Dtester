@@ -11,7 +11,29 @@
 </head>
 
 <body ng-app="app.admin" ng-controller="AdminEditController as admins">
+
     <h1>Edit Admin</h1>
+
+    <form ng-if = "admins.show">
+        <button ng-click = "admins.hideForm()">x</button>
+        <span>Редагувати адміна з id = {{admins.currentObj.id}}</span>
+        <br>
+        <span>Name:</span>
+        <br>
+        <input type="text"  name="name"  ng-model="admins.currentObj.username">
+        <br>
+        <span>Email:</span>
+        <br>
+        <input type="text" name="email" ng-model="admins.currentObj.email">
+        <br>
+        <span>Встановити новий пароль:</span>
+        <br>
+        <input type="password" name="password" ng-model="admins.password"><button ng-click = "admins.setPassword()">Встановити</button>
+        <br>
+        <button ng-click = "admins.update()">Підтвердити</button>
+        <br>
+    </form>
+
     <table>
         <thead>
             <tr>
@@ -28,7 +50,7 @@
                 <td>{{admin.username}}</td>
                 <td>{{admin.email}}</td>
                 <td>
-                    <button ng-click = "admins.edit(admin.id)">Редагувати</button>
+                    <button ng-click = "admins.edit(admin)">Редагувати</button>
                 </td>
                 <td>
                     <button ng-click = "admins.remove(admin.id)">Видалити</button>
@@ -37,26 +59,6 @@
         </tbody>
     </table>
 
-    <form ng-if = "admins.show">
-        <button ng-click = "admins.hideForm()">x</button>
-        <span>Редагувати адміна з id = {{admins.currentId}}</span>
-        <br>
-        <span>Name:</span>
-        <br>
-        <input type="text"  name="name" ng-model="admins.name">
-        <button ng-click = "admins.update('name')">Надіслати</button>
-        <br>
-        <span>Password:</span>
-        <br>
-        <input type="password" name="password" ng-model="admins.password">
-        <button ng-click = "admins.update('password')">Надіслати</button><br>
-        <span>Email:</span>
-        <br>
-        <input type="text" name="email" ng-model="admins.email">
-        <button ng-click = "admins.update('email')">Надіслати</button>
-        <br>
-
-    </form>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="app.admin.js"></script>
     <script src="app.admin.controller.js"></script>

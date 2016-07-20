@@ -8,55 +8,49 @@
     AdminEditController.$inject = ["adminService"];
 
     function AdminEditController(adminService) {
-        var vm = this;
-        vm.edit = edit;
-        vm.hideForm =hideForm;
-        vm.update = update;
-        vm.remove = remove;
-        vm.array = [];
-        vm.show = false;
-        vm.currentId=0;
-        vm.name = "";
-        vm.password = "";
-        vm.email ="";
+        var self = this;
+        self.edit = edit;
+        self.hideForm =hideForm;
+        self.update = update;
+        self.remove = remove;
+        self.setPassword = setPassword;
+        self.array = [];
+        self.show = false;
+        self.password = "";
+        self.currentObj = {};
+
 
         activate();
 
         function activate() {
             adminService.login();
             return adminService.getAdmins().then(function (data) {
-                vm.array = data;
-                return vm.array;
+                self.array = data;
+                return self.array;
             });
         }
 
         function hideForm() {
-            vm.show = false;
+            self.show = false;
         }
 
-        function edit(id) {
-            vm.show = true;
-            vm.currentId =id;
+        function setPassword() {
+            self.currentObj.password = self.password;
+            self.password ="";
+            alert("Новий пароль встановлено. Щоб його зберегти слід натиснути кнопку 'Підтвердити'")
         }
 
-        function update(param){
-            var obj;
-            if (param == "name") {
-                obj = {username:vm.name};
-                adminService.editAdmin(vm.currentId,obj);
-                vm.name ="";
-            }
-            else if (param == "password") {
-                obj = {password:vm.password};
-                adminService.editAdmin(vm.currentId,obj);
-                vm.password ="";
-            }
-            else {
-                obj = {email:vm.email};
-                adminService.editAdmin(vm.currentId,obj);
-                vm.email ="";
-            }
+        function edit(obj) {
+            self.show = true;
+            console.log(obj)
+            self.currentObj = obj;
+        }
+
+        function update(){
+            console.log(self.currentObj)
+            adminService.editAdmin(self.currentObj.id,self.currentObj);
             activate();
+            hideForm()
         }
 
         function remove(id) {
