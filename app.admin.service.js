@@ -11,16 +11,7 @@
             return{
                 getAdmins:getAdmins,
                 deleteAdmin:deleteAdmin,
-                editAdmin:editAdmin,
-                login:login
-            };
-
-            function login() {
-                var url = "http://dtapi.local//login/index";
-                var adminLog = {"username":"admin","password":"1qaz2wsx"};
-                return $http.post(url, adminLog)
-                    .then(complete)
-                    .catch(failed);
+                editAdmin:editAdmin
             };
 
             function getAdmins() {

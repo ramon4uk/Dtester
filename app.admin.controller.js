@@ -14,7 +14,7 @@
         self.update = update;
         self.remove = remove;
         self.setPassword = setPassword;
-        self.array = [];
+        self.list = [];
         self.show = false;
         self.password = "";
         self.currentObj = {};
@@ -23,10 +23,9 @@
         activate();
 
         function activate() {
-            adminService.login();
             return adminService.getAdmins().then(function (data) {
-                self.array = data;
-                return self.array;
+                self.list = data;
+                return self.list;
             });
         }
 
@@ -42,12 +41,10 @@
 
         function edit(obj) {
             self.show = true;
-            console.log(obj)
             self.currentObj = obj;
         }
 
         function update(){
-            console.log(self.currentObj)
             adminService.editAdmin(self.currentObj.id,self.currentObj);
             activate();
             hideForm()
