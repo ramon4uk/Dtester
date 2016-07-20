@@ -45,7 +45,7 @@
         }
 
         function update(){
-            adminService.editAdmin(self.currentObj.id,self.currentObj);
+            adminService.editAdmin(self.currentObj);
             activate();
             hideForm()
         }

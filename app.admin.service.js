@@ -21,8 +21,8 @@
                     .catch(failed);
             };
 
-            function editAdmin(id,obj) {
-                var url = "/AdminUser/update/" + id;
+            function editAdmin(obj) {
+                var url = "/AdminUser/update/" + obj.id;
                 return $http.post(url,obj)
                     .then(complete)
                     .catch(failed);
